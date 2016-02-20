@@ -31,11 +31,7 @@
             <div id='status-indicator'>&nbsp;</div>
         </div>
     </h1>
-
-
-
     <div class='row' style='min-height:400px;'>
-
         <div class='col-md-12'>
             <div class='panel panel-default'>
                 <div class='panel-body'>
@@ -47,30 +43,26 @@
                 </div>
             </div>
         </div>
-
-        <div id="nlu" class="col-md-12">
+        <div id="tts" class='col-md-12'>
             <div class='panel panel-default'>
-                <div class="panel-heading">
-                    <strong>Natural Language (Text)</strong>
+                <div class='panel-heading'>
+                    <strong>Smart Note</strong>
                 </div>
-                <div class="panel-body">
+                <div class='panel-body'>
                     <form class='form' role='form' onsubmit="return false;">
                         <div class='form-group'>
-                            <input id="text_nlu_tag" type="text" class="form-control" placeholder="Version Tag"/>
+                            <textarea id="tts_text" type='text' class='form-control textarea' placeholder='Smart Note' rows='6'></textarea>
                         </div>
-                        <div class="form-group">
-                            <input id="nlu_text" type="text" class="form-control" placeholder="Text to process"/>
+                        <div class='form-group'>
+                            <button id='tts_go' type='button' class='btn btn-primary btn-block'><i class='fa fa-comment'></i> SPEAK</button>
                         </div>
-                        <br/>
-                        <button class='btn btn-primary btn-block' id='nlu_go' type='button' class='btn btn-primary btn-block'><span id='nlu_label'>EXECUTE</span></button>
                     </form>
                 </div>
-                <div class="panel-body max-600" id="nlu_debug_output">
+                <div class='panel-body max-600' id='tts_debug_output'>
 
                 </div>
             </div>
         </div>
-
         <div id="asr" class='col-md-12'>
             <div class='panel panel-default'>
                 <div class='panel-heading'>
@@ -85,27 +77,6 @@
                     <button class='btn btn-primary btn-block' id='asr_go' type='button' class='btn btn-primary btn-block'><i class='fa fa-microphone'></i> <span id='asr_label'>RECORD</span></button>
                 </div>
                 <div class='panel-body max-600' id='asr_debug_output'>
-
-                </div>
-            </div>
-        </div>
-
-        <div id="tts" class='col-md-12'>
-            <div class='panel panel-default'>
-                <div class='panel-heading'>
-                    <strong>Text to Speech</strong>
-                </div>
-                <div class='panel-body'>
-                    <form class='form' role='form' onsubmit="return false;">
-                        <div class='form-group'>
-                            <textarea id="tts_text" type='text' class='form-control textarea' placeholder='What text would you like to have synthesized?' rows='12'></textarea>
-                        </div>
-                        <div class='form-group'>
-                            <button id='tts_go' type='button' class='btn btn-primary btn-block'><i class='fa fa-comment'></i> SPEAK</button>
-                        </div>
-                    </form>
-                </div>
-                <div class='panel-body max-600' id='tts_debug_output'>
 
                 </div>
             </div>
@@ -159,14 +130,12 @@
         // NODES
         var $content = $('#content');
         var $nluTag = $('#nlu_tag');
-        var $textNluTag = $("#text_nlu_tag");
         var $connect = $('#connect');
         var $ttsGo = $('#tts_go');
         var $ttsText = $('#tts_text');
         var $ttsDebug = $('#tts_debug_output');
         var $asrRecord = $('#asr_go');
         var $asrLabel = $('#asr_label');
-        var $nluExecute = $('#nlu_go');
         var $asrViz = $('#asr_viz');
         var $asrDebug = $('#asr_debug_output');
         var $nluDebug = $('#nlu_debug_output');
@@ -227,15 +196,11 @@
         $connect.on('click', connect);
 
         $nluTag.val(NLU_TAG || '');
-        $textNluTag.val(NLU_TAG || '');
-
 
         // Disconnect
         $(window).unload(function(){
             Nuance.disconnect();
         });
-
-
 
 
         //
@@ -273,16 +238,6 @@
         };
         $asrRecord.on('click', asr);
 
-        //
-        // NLU / Text
-        function textNlu(evt){
-            var options = {
-                text: $("#nlu_text").val(),
-                tag: $textNluTag.val()
-            };
-            Nuance.startTextNLU(options);
-        }
-        $nluExecute.on('click', textNlu);
 
         //
         // ASR Volume visualization
