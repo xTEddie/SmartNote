@@ -38,7 +38,7 @@
                     <div class='panel-body'>
                         <form class='form-inline'>
                             <div class='form-group'>
-                                <input class='form-control' type='text' placeholder='Enter video url...' size='55'> </input>
+                                <input id='query' class='form-control' type='text' placeholder='Enter video url...' size='55'> </input>
                             </div>
                             <button id='search' type='button' class='btn btn-primary'><i class='fa fa-search'></i> SEARCH</button>
                         </form>
@@ -48,7 +48,7 @@
             <div class='col-md-12'>
                 <div class='panel panel-default'>
                     <div class='panel-body'>
-                        <iframe width="100%" height="400em" src="https://www.youtube.com/embed/NyK5SG9rwWI" frameborder="0" allowfullscreen></iframe>
+                        <iframe id='video' width="100%" height="400em" src="https://www.youtube.com/embed/NyK5SG9rwWI" frameborder="0" allowfullscreen></iframe>
                     </div>
                 </div>
             </div>
@@ -165,6 +165,10 @@
         var $asrDebug = $('#asr_debug_output');
         var $nluDebug = $('#nlu_debug_output');
         var $asrVizCtx = $asrViz.get()[0].getContext('2d');
+
+        var $query = $('#query');
+        var $searchButton = $('#search');
+        var $videoFrame = $('#video')
 
         var dLog = function dLog(msg, logger){
             var d = new Date();
@@ -321,6 +325,14 @@
                 }
             });
         };
+
+        function searchVideo(){
+            var url = $query.val();
+            $videoFrame.attr('src', url);
+            // https://www.youtube.com/embed/YPRV1h3CGQk
+        }
+        $searchButton.on('click', searchVideo);
+
         cleanViz();
     })();
 </script>
