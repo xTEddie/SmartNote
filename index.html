@@ -31,57 +31,82 @@
             <div id='status-indicator'>&nbsp;</div>
         </div>
     </h1>
-    <div class='row' style='min-height:400px;'>
-        <div class='col-md-12'>
-            <div class='panel panel-default'>
-                <div class='panel-body'>
-                    <form class='form' role='form' onsubmit="return false;">
-                        <div class='form-group'>
-                            <button id='connect' type='button' class='btn btn-primary btn-block'><i class='fa fa-check'></i> CONNECT</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <div id="tts" class='col-md-12'>
-            <div class='panel panel-default'>
-                <div class='panel-heading'>
-                    <strong>Smart Note</strong>
-                </div>
-                <div class='panel-body'>
-                    <form class='form' role='form' onsubmit="return false;">
-                        <div class='form-group'>
-                            <textarea id="tts_text" type='text' class='form-control textarea' placeholder='Smart Note' rows='6'></textarea>
-                        </div>
-                        <div class='form-group'>
-                            <button id='tts_go' type='button' class='btn btn-primary btn-block'><i class='fa fa-comment'></i> SPEAK</button>
-                        </div>
-                    </form>
-                </div>
-                <div class='panel-body max-600' id='tts_debug_output'>
-
-                </div>
-            </div>
-        </div>
-        <div id="asr" class='col-md-12'>
-            <div class='panel panel-default'>
-                <div class='panel-heading'>
-                    <strong>Speech Recognition</strong>
-                </div>
-                <div class='panel-body'>
-                    <div class='form-group'>
-                        <input id="nlu_tag" type="text" class="form-control" placeholder="Version Tag (Only required if performing NLU)"/>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class='col-md-12'>
+                <div class='panel panel-default'>
+                    <div class='panel-body'>
+                        <form class='form-inline'>
+                            <div class='form-group'>
+                                <input class='form-control' type='text' placeholder='Enter video url...' size='55'> </input>
+                            </div>
+                            <button id='search' type='button' class='btn btn-primary'><i class='fa fa-search'></i> SEARCH</button>
+                        </form>
                     </div>
-                    <canvas id="asr_viz" height="220" ></canvas>
-                    <br/>
-                    <button class='btn btn-primary btn-block' id='asr_go' type='button' class='btn btn-primary btn-block'><i class='fa fa-microphone'></i> <span id='asr_label'>RECORD</span></button>
                 </div>
-                <div class='panel-body max-600' id='asr_debug_output'>
-
+            </div>
+            <div class='col-md-12'>
+                <div class='panel panel-default'>
+                    <div class='panel-body'>
+                        <iframe width="100%" height="400em" src="https://www.youtube.com/embed/NyK5SG9rwWI" frameborder="0" allowfullscreen></iframe>
+                    </div>
                 </div>
             </div>
         </div>
+        <div class="col-lg-6">
+           <div class='row' style='min-height:400px;'>
+                <div class='col-md-12'>
+                    <div class='panel panel-default'>
+                        <div class='panel-body'>
+                            <form class='form' role='form' onsubmit="return false;">
+                                <div class='form-group'>
+                                    <button id='connect' type='button' class='btn btn-primary btn-block'><i class='fa fa-check'></i> CONNECT</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div id="tts" class='col-md-12'>
+                    <div class='panel panel-default'>
+                        <div class='panel-heading'>
+                            <strong>Smart Note</strong>
+                        </div>
+                        <div class='panel-body'>
+                            <form class='form' role='form' onsubmit="return false;">
+                                <div class='form-group'>
+                                    <textarea id="tts_text" type='text' class='form-control textarea' placeholder='Smart Note' rows='6'></textarea>
+                                </div>
+                                <div class='form-group'>
+                                    <button id='tts_go' type='button' class='btn btn-primary btn-block'><i class='fa fa-comment'></i> SPEAK</button>
+                                </div>
+                            </form>
+                        </div>
+         <!--                <div class='panel-body max-600' id='tts_debug_output'>
 
+                        </div> -->
+                    </div>
+                </div>
+                <div id="asr" class='col-md-12'>
+                    <div class='panel panel-default'>
+                        <div class='panel-heading'>
+                            <strong>Speech Recognition</strong>
+                        </div>
+                        <div class='panel-body'>
+                            <div class='form-group'>
+                                <input id="nlu_tag" type="text" class="form-control" placeholder="Version Tag (Only required if performing NLU)"/>
+                            </div>
+                            <canvas id="asr_viz" height="220" ></canvas>
+                            <br/>
+                            <button class='btn btn-primary btn-block' id='asr_go' type='button' class='btn btn-primary btn-block'><i class='fa fa-microphone'></i> <span id='asr_label'>RECORD</span></button>
+                        </div>
+                        <div class='panel-body max-600' id='asr_debug_output'>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
     </div>
 
     <hr/>
