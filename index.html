@@ -80,6 +80,10 @@
                                 <div class='form-group'>
                                     <button id='tts_go' type='button' class='btn btn-primary btn-block'><i class='fa fa-comment'></i> SPEAK</button>
                                 </div>
+                                <div class='form-group'>
+                                    <button id='clear-text' type='button'class='btn btn-primary btn-block'><i class="fa fa-eraser"></i> CLEAR
+                                    </button>
+                                </div>
                             </form>
                         </div>
          <!--                <div class='panel-body max-600' id='tts_debug_output'>
@@ -164,6 +168,7 @@
         var $query = $('#query');
         var $searchButton = $('#search');
         var $videoFrame = $('#video')
+        var $clearButton = $('#clear-text');
 
         var dLog = function dLog(msg, logger){
             var d = new Date();
@@ -347,6 +352,11 @@
             }
         }
         $(document.body).on('keypress', record);
+
+        function clearText() {
+            $ttsText.val('');
+        }
+        $clearButton.on('click', clearText);
 
         cleanViz();
     })();
