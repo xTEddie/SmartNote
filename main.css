@@ -1,0 +1,22 @@
+.page-header {
+  background-image:url('https://scontent-iad3-1.xx.fbcdn.net/hphotos-xlt1/v/t1.0-9/12743598_481197332090283_5008705628011713272_n.jpg?oh=02798b57b753bcdb2f9009296a00d236&oe=57604D08');
+  height: 215px;
+  background-repeat: no-repeat; 
+  padding: 14px 10px;
+
+}
+
+.container {
+  background-image:url('http://www.vectorea.com/tvx_uploads/10/2019-colorful-tone-triangle-mosaic-background.jpg');
+  background-size: cover; 
+  background-repeat: no-repeat; 
+}
+
+.btn{
+  background-color: #adebad;
+  color: black;
+}
+.panel{
+  ackground-color: #adebad;
+}
+
