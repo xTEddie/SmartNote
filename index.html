@@ -84,6 +84,10 @@
                                     <button id='clear-text' type='button'class='btn btn-primary btn-block'><i class="fa fa-eraser"></i> CLEAR
                                     </button>
                                 </div>
+                                <div class='form-group'>
+                                    <button id='save-text' type='button'class='btn btn-primary btn-block'><i class="fa fa-floppy-o"></i> SAVE
+                                    </button>
+                                </div>
                             </form>
                         </div>
          <!--                <div class='panel-body max-600' id='tts_debug_output'>
@@ -169,6 +173,7 @@
         var $searchButton = $('#search');
         var $videoFrame = $('#video')
         var $clearButton = $('#clear-text');
+        var $saveButton = $('#save-text');
 
         var dLog = function dLog(msg, logger){
             var d = new Date();
@@ -357,6 +362,32 @@
             $ttsText.val('');
         }
         $clearButton.on('click', clearText);
+
+        function saveText() {
+            if($ttsText.val().length !== 0){
+                var textToWrite = $ttsText.val();
+                var textFileAsBlob = new Blob([textToWrite], {type:'text/plain'});
+                var downloadLink = document.createElement("a");
+                downloadLink.download = 'test.txt';
+                downloadLink.innerHTML = "Download File";
+                if (window.webkitURL != null)
+                {
+                    // Chrome allows the link to be clicked
+                    // without actually adding it to the DOM.
+                    downloadLink.href = window.webkitURL.createObjectURL(textFileAsBlob);
+                } else {
+                    // Firefox requires the link to be added to the DOM
+                    // before it can be clicked.
+                    downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
+                    downloadLink.onclick = destroyClickedElement;
+                    downloadLink.style.display = "none";
+                    document.body.appendChild(downloadLink);
+                }
+
+                downloadLink.click();
+            }
+        }
+        $saveButton.on('click', saveText);
 
         cleanViz();
     })();
