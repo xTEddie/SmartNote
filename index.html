@@ -96,9 +96,9 @@
                             <br/>
                             <button class='btn btn-primary btn-block' id='asr_go' type='button' class='btn btn-primary btn-block'><i class='fa fa-microphone'></i> <span id='asr_label'>RECORD</span></button>
                         </div>
-                        <div class='panel-body max-600' id='asr_debug_output'>
+<!--                         <div class='panel-body max-600' id='asr_debug_output'>
 
-                        </div>
+                        </div> -->
                     </div>
                 </div>
 
@@ -210,6 +210,8 @@
                     } else if (msg.result_type === "NVC_ASR_CMD") {
                         if(msg.status_code === 0){
                             dLog(JSON.stringify(msg, null, 2), $asrDebug);
+                            var output = msg.transcriptions[0];
+                            $ttsText.val($ttsText.val().trim() + "\n" + output);
                         }
                     }
                 },
