@@ -207,6 +207,10 @@
                         } else {
                             dLog(JSON.stringify(msg, null, 2), $nluDebug);
                         }
+                    } else if (msg.result_type === "NVC_ASR_CMD") {
+                        if(msg.status_code === 0){
+                            dLog(JSON.stringify(msg, null, 2), $asrDebug);
+                        }
                     }
                 },
                 onerror: function(error) {
