@@ -328,6 +328,17 @@
 
         function searchVideo(){
             var url = $query.val();
+
+            if(url.trim().length == 0 ){
+                return;
+            }
+
+            if(url.search('youtube') >= 1){
+                if(url.search('embed') === -1){
+                    url = 'https://www.youtube.com/embed/' + url.split('watch?v=')[1];
+                }
+            }
+
             $videoFrame.attr('src', url);
             // https://www.youtube.com/embed/YPRV1h3CGQk
         }
