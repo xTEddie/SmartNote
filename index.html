@@ -92,9 +92,6 @@
                             <strong>Speech Recognition</strong>
                         </div>
                         <div class='panel-body'>
-<!--                             <div class='form-group'>
-                                <input id="nlu_tag" type="text" class="form-control" placeholder="Version Tag (Only required if performing NLU)"/>
-                            </div> -->
                             <canvas id="asr_viz" height="220" ></canvas>
                             <br/>
                             <button class='btn btn-primary btn-block' id='asr_go' type='button' class='btn btn-primary btn-block'><i class='fa fa-microphone'></i> <span id='asr_label'>RECORD</span></button>
@@ -127,8 +124,6 @@
         var APP_ID = "NMDPTRIAL_edwardtranv1_gmail_com20151111002244";
         var APP_KEY = "c7db49a73431f7b332e698abc4eba7062c339f37bd66ee2d7a3a3109fede0dc6b9566ded8865a0ba4b396510240d165040b688fd1c762b96b15c9faf3aac75f3";
         var USER_ID = "Eddie";
-        // var NLU_TAG = "M1720_A914_V2";
-        var NLU_TAG = "";
 
         var userMedia = undefined;
         navigator.getUserMedia = navigator.getUserMedia
@@ -154,7 +149,6 @@
         var isRecording = false;
         // NODES
         var $content = $('#content');
-        // varvar NLU_TAG $nluTag = $('#nlu_tag');
         var $connect = $('#connect');
         var $ttsGo = $('#tts_go');
         var $ttsText = $('#tts_text');
@@ -224,8 +218,6 @@
         };
         $connect.on('click', connect);
 
-        // $nluTag.val(NLU_TAG || '');
-
         // Disconnect
         $(window).unload(function(){
             Nuance.disconnect();
@@ -256,10 +248,7 @@
                 var options = {
                     userMedia: userMedia
                 };
-                // if($nluTag.val()) {
-                //     options.nlu = true;
-                //     options.tag = $nluTag.val();
-                // }
+
                 Nuance.startASR(options);
                 $asrLabel.text('STOP RECORDING');
             }
