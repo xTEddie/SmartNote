@@ -88,6 +88,19 @@
                                     <button id='save-text' type='button'class='btn btn-primary btn-block'><i class="fa fa-floppy-o"></i> SAVE
                                     </button>
                                 </div>
+                                <div class="input-group">
+                                    <span class="input-group-btn">
+                                        <span class="btn btn-primary btn-file">
+                                            Browse... <input id="fileToLoad" type="file" name="file">
+                                        </span>
+                                    </span>
+                                    <input type="text" class="form-control" readonly>
+                                </div>
+                                <br>
+                                <div class='form-group'>
+                                    <button id='load-file' type='button' class='btn btn-primary btn-block'><i class="fa fa-file-audio-o"></i> LOAD
+                                    </button>
+                                </div>
                             </form>
                         </div>
          <!--                <div class='panel-body max-600' id='tts_debug_output'>
@@ -174,6 +187,7 @@
         var $videoFrame = $('#video')
         var $clearButton = $('#clear-text');
         var $saveButton = $('#save-text');
+        var $loadButton = $('#load-file');
 
         var dLog = function dLog(msg, logger){
             var d = new Date();
@@ -368,7 +382,7 @@
                 var textToWrite = $ttsText.val();
                 var textFileAsBlob = new Blob([textToWrite], {type:'text/plain'});
                 var downloadLink = document.createElement("a");
-                downloadLink.download = 'test.txt';
+                downloadLink.download = 'notes.txt';
                 downloadLink.innerHTML = "Download File";
                 if (window.webkitURL != null)
                 {
@@ -388,6 +402,39 @@
             }
         }
         $saveButton.on('click', saveText);
+
+       // Browser Files
+        $(document).on('change', '.btn-file :file', function() {
+          var input = $(this),
+              numFiles = input.get(0).files ? input.get(0).files.length : 1,
+              label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+          input.trigger('fileselect', [numFiles, label]);
+        });
+        $(document).ready( function() {
+            $('.btn-file :file').on('fileselect', function(event, numFiles, label) {
+                var input = $(this).parents('.input-group').find(':text'),
+                    log = numFiles > 1 ? numFiles + ' files selected' : label;
+                if( input.length ) {
+                    input.val(log);
+                } else {
+                    if( log ) alert(log);
+                }
+            });
+        });
+
+        function loadFileAsText()
+        {
+            var fileToLoad = document.getElementById("fileToLoad").files[0];
+
+            var fileReader = new FileReader();
+            fileReader.onload = function(fileLoadedEvent)
+            {
+                var textFromFileLoaded = fileLoadedEvent.target.result;
+                $ttsText.val(textFromFileLoaded);
+            };
+            fileReader.readAsText(fileToLoad, "UTF-8");
+        }
+        $loadButton.on('click', loadFileAsText);
 
         cleanViz();
     })();
